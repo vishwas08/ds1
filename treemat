@@ -1,0 +1,135 @@
+1. Find the shortest distance between vertices A and F using Dijistra’s algorithm 
+for the given graph and draw the path.
+S = [1 1 1 2 2 2 3 3 3 4 4 5]; % source vertex
+T = [2 3 4 3 4 5 4 5 6 5 6 6]; % terminal vertex
+W = [3 5 6 3 4 7 2 6 8 2 2 5]; % weight for each edge
+G = graph(S,T,W); % to plot graph
+[path,d] = shortestpath(G,1,6); % to calculate the shortest path from 1 to 6
+P = plot(G,'Edgelabel',G.Edges.Weight); % to plot the given graph
+fprintf("%d\n",path); % to print the path
+fprintf("The length %d:",d); % to print the shortest distance
+
+
+2. Find the minimum spanning tree of the given graph using Kruskal’s algorithm and 
+write its weight.
+S = [1 1 1 2 3 3 4 4 4 6 6 7]; % source vertex
+T = [3 4 2 5 4 6 2 5 7 7 4 5]; % terminal vertex
+W = [4 1 3 10 2 5 3 7 4 1 8 6]; % weight for each edge
+G = graph(S,T,W); % to plot graph
+MST = minspantree(G,'Method','sparse'); % to find minimum spanning tree
+P = plot(G,'Edgelabel',G.Edges.Weight); % to plot the given graph
+highlight(P,MST);% to highlight the branches of minimum spanning tree
+L =sum(MST.Edges.Weight); % to calculate the sum of weights of all branches of 
+minimum spanning tree
+disp('weight of the minimum spanning tree=');% to output the graph 
+disp(L);% to display the minimum weight
+
+3. The number of particles of contamination that occur on an optical disc has a Poisson 
+distribution, and the average number of particles is 10. Find the probability that 12 or 
+less particles occur in the area of a disc.
+Matlab code for finding the probability using Poisson distribution which has to be typed in command 
+window as show in screenshot.
+probability=poisscdf(x,lamda) (This code will calculate the probability for less than or equal to x)
+For the given problem, mean(lamda)=10.
+probability=poisscdf(12,10)
+Output: probability = 0.7916
+To find the probability greater than x: code is [probability=1-poisscdf(x,lamda)]
+For the given problem we want to find the probability that 15 more particles occur in the area of a 
+disc.
+Code: probability=1-poisscdf(15,10)
+Output: probability = 0.0487
+
+4. The marks of 1000 students in an examination follows a normal distribution with mean 
+70 and standard deviation 5. Find
+(i) no. of students whose score lies between 65 and 75 marks.
+(ii) no. of students whose score more than 85.
+Matlab code for finding the probability using Normal distribution which has to be typed in command 
+window as show in screenshot.
+probability=normcdf(x, mu,sigma) (This code will calculate the probability for less than or equal to x)
+For the given problem, mean(mu)=70 and SD(sigma)=5.
+p=normcdf([65,75],70,5); 
+>> p(2)-p(1) (p(2) is the probability for x=75 and p(1) is the probability for x=65. 
+ The difference will give the probability in the given interval [65,75]).
+ans =0.6827
+To find the probability greater than x: code is [probability=1-normcdf(x,mu,sigma)]
+For the given problem we want to find the probability for more than 85.
+Code: probability=1-normcdf(85,70,5)
+Output: probability = 0.0013
+To find the number of students whose score lies between 65 and 75.
+p=normcdf([65,75],70,5);
+>> 1000*(p(2)-p(1)) 
+ans = 682.6895
+Similarly, To find the number of students whose score more than 85.
+p=normcdf([85,70,5);
+>> 1000* 0.0013
+Ans=1.3 which is approximately equal to 1.
+
+5. In a certain town, the duration of shower is exponentially distributed with mean 5 minutes. 
+What is the probability that the shower will last for (i) less than 10 minutes (ii) 10 minutes or 
+more and (iii) between 10 and 12 minutes.
+mu = 5
+(i) p=expcdf(10,mu)
+(ii) q=1-p
+(iii) p2=expcdf(12,mu)-expcdf(10,mu)
+
+
+gagan
+For poisson Ditribution                                           
+
+lamda= average or mean
+
+For less than x
+                                                                     
+probability=poisscdf(x,lamda)
+                                                                      
+For More than x
+                                                                       
+probability=1- poisscdf(x,lamda)
+
+
+For Exponential Distribution   
+
+For less than x 
+ probability=expcdf(x,lamda)  
+
+For More than x   
+
+probability=1- expcdf(x,lamda)  
+
+                                                           
+
+FOr Normal Distribution
+
+mu here is mean
+sigma here is standard deviation
+
+for less than x
+probability=normcdf(x, mu,sigma)
+
+for more than x
+
+probability=1-normcdf(x,mu,sigma)
+
+
+Dijistraâ€™s algorithm
+
+S=[1 1 2 2 5 3 3 4];
+T=[2 3 5 4 6 5 4 6];
+W=[1 3 5 4 2 4 5 6];
+G=digraph(S,T,W);
+[path,d]=shortestpath(G,1,6);
+P=plot(G,'EdgeLabel',G.Edges.Weight);
+fprintf('%d\n',path);
+fprintf('Length of the shortest path is:%d\n',d);
+
+
+Kruskalâ€™s algorithm.
+
+S=[1 1 2 2 3 3 4 4 4 4 5 7];
+T=[2 4 4 5 1 6 3 5 6 7 7 6];
+W=[2 1 3 10 4 5 2 2 8 4 6 1];
+G=graph(S,T,W);
+[MST,Pred]=minspantree(G,'Method','sparse');
+P=plot(MST,'EdgeLabel',MST.Edges.Weight);
+highlight(P,MST)
+sum(MST.Edges.Weight)
